@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jeopardy data</title>
+  <script src="d3.js"></script>
+</head>
+
+<body>
+  <script>
+    // Loader jeopardy-data og gør det tilgængeligt
+    d3.json("JEOPARDY_QUESTIONS.json").then(function(data) {
+      let jeopardy = data;
+      console.log(jeopardy[0]);
+
+      /*
+        Præcist hvor mange spørgsmål er der i alt?
+        Hvad er det længste spørgsmål i datasættet?
+        Hvor mange spørgsmål indeholder ordet “STRAWBERRY”?
+        Hvilket spørgsmål har “HULK” som svar?
+        Hvilke kategorier finder du i “show number” 4242?
+        Hvilke spørgsmål finder du i udsendelsen fra “2008-10-13”?
+      */
+
+      // 1
+      console.log(jeopardy.length);
+
+      // 2
+      let maxLength = 0;
+      let index = 0;
+      
+      for (let i = 0; i < jeopardy.length; i++) {
+        if (jeopardy[i].question.length > maxLength) {
+          maxLength = jeopardy[i].question.length;
+          index = i;
+        }
+      }
+      console.log(jeopardy[index]);
+
+      // 3
+      let count = 0;
+      for (let j of jeopardy) {
+        if (j.question.toLowerCase().includes("strawberry")) {
+          count++;
+        }
+      }
+      console.log(count);
+
+      // 4
+      for (let i = 0; i < jeopardy.length; i++) {
+        if (jeopardy[i].answer.toLowerCase() === "hulk") {
+          console.log("hulk", i);
+        }
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>
