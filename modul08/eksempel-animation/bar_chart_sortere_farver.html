@@ -68,9 +68,7 @@
 
     // Bars
     svg.selectAll("rect")
-      .data(dataset, function(d) {
-        return d.key;
-      })
+      .data(dataset)
       .enter()
       .append("rect")
       .attr("x", function (d, i) {
